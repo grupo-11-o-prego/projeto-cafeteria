@@ -1,1 +1,1 @@
-{ "bebidas": { "refrigerantes": { "coca-cola": { "valor": 5, "estoque": 10 }, "fanta": { "valor": 4, "estoque": 20 } } } }
+{'bebidas': {'refrigerantes': {'coca-cola': {'valor': 5, 'estoque': 10}, 'fanta': {'valor': 4, 'estoque': 20}, 'dolly': {'valor': 3, 'estoque': 1}}}}
