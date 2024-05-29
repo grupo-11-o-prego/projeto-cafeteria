@@ -7,7 +7,14 @@ with open(arquivo, 'r') as arquivo_aberto:
   cardapio_conteudo = arquivo_aberto.read()
  
 # transforma o conteudo do arquivo em um dicionário
-cardapio = json.loads(cardapio_conteudo)    
+cardapio = json.loads(cardapio_conteudo) 
+
+def exibirCategorias():
+  for k in cardapio.keys():
+    print(f"{k}")
+
+def verificarCategoria(categoria: str):
+  return categoria.lower() in cardapio.keys()
 
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
