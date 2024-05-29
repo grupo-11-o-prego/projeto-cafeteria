@@ -16,6 +16,14 @@ def exibirCategorias():
 def verificarCategoria(categoria: str):
   return categoria.lower() in cardapio.keys()
 
+def verificarSubCategoria(subcategoria: str, categoria: str):
+  categoria_lowercase = categoria.lower()
+
+  if verificarCategoria(categoria_lowercase) == False:
+    return False
+
+  return subcategoria.lower() in cardapio[categoria_lowercase].keys()
+
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
     arquivo_aberto.write(str(cardapio))
