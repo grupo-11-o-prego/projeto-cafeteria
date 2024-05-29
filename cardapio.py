@@ -24,6 +24,19 @@ def verificarSubCategoria(subcategoria: str, categoria: str):
 
   return subcategoria.lower() in cardapio[categoria_lowercase].keys()
 
+def verificarProduto(produto: str, subcategoria: str, categoria: str):
+  categoria_lowercase = categoria.lower()
+
+  if verificarCategoria(categoria_lowercase) == False:
+    return False
+  
+  subcategoria_lowercase = subcategoria.lower()
+
+  if verificarSubCategoria(subcategoria_lowercase, categoria_lowercase) == False:
+    return False
+
+  return produto.lower() in cardapio[categoria_lowercase][subcategoria_lowercase].keys()
+
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
     arquivo_aberto.write(str(cardapio))

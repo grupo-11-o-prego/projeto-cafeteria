@@ -1,3 +1,3 @@
 import cardapio as cp
 
-print(cp.verificarSubCategoria("refrigerantes", "bebidas"))
+print(cp.verificarProduto("coca-cola", "refrigerantes", "bebidas"))

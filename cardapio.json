@@ -5,5 +5,10 @@
       "fanta": { "valor": 4, "estoque": 20 },
       "dolly": { "valor": 3, "estoque": 1 }
     }
+  },
+  "sobremesas": {
+    "geladas": {
+      "pudim": { "valor": 20, "estoque": 2 }
+    }
   }
 }
