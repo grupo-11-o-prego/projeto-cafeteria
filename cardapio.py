@@ -13,6 +13,10 @@ def exibirCategorias():
   for k in cardapio.keys():
     print(f"{k}")
 
+def exibirSubCategorias(categoria: str):
+  for k in cardapio[categoria].keys():
+    print(f"{k}")
+
 def verificarCategoria(categoria: str):
   return categoria.lower() in cardapio.keys()
 
