@@ -9,6 +9,9 @@ with open(arquivo, 'r') as arquivo_aberto:
 # transforma o conteudo do arquivo em um dicionário
 cardapio = json.loads(cardapio_conteudo) 
 
+def montarTitulo(texto: str):
+  print("")
+
 def exibirCategorias():
   print("-- Categorias ------------------------------------")
   for k in cardapio.keys():
@@ -16,7 +19,7 @@ def exibirCategorias():
   print("--------------------------------------------------")
 
 def exibirSubCategorias(categoria: str):
-  print(f"-- Subcategorias de {categoria} {"".ljust(29 - len(categoria), "-")}")
+  print(f"-- Subcategorias de {categoria} {''.ljust(29 - len(categoria), '-')}")
   for k in cardapio[categoria].keys():
     print(f" - {k}")
   print("--------------------------------------------------")
