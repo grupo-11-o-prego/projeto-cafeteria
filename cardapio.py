@@ -16,8 +16,10 @@ def exibirCategorias():
   print("--------------------------------------------------")
 
 def exibirSubCategorias(categoria: str):
+  print(f"-- Subcategorias de {categoria} {"".ljust(29 - len(categoria), "-")}")
   for k in cardapio[categoria].keys():
-    print(f"{k}")
+    print(f" - {k}")
+  print("--------------------------------------------------")
 
 def exibirProdutos(categoria: str, subcategoria: str):
   for k in cardapio[categoria][subcategoria].keys():
@@ -51,12 +53,23 @@ def escolherCategoria():
   while True:
     exibirCategorias()
     categoria = str(input("Escolha uma categoria: ")).lower()
-    if(categoria in cardapio.keys()):
+    if(verificarCategoria(categoria)):
+      print("\n")
       return categoria
     else:
       print(f'> a categoria "{categoria}" não existe!')
+    print("\n")
   
-  
+def escolherSubCategoria(categoria: str):
+  while True:
+    exibirSubCategorias(categoria)
+    subcategoria = str(input("Escolha uma subcategoria: ")).lower()
+    if(verificarSubCategoria(subcategoria, categoria)):
+      print("\n")
+      return subcategoria
+    else:
+      print(f'> a subcategoria "{subcategoria}" não existe!')
+    print("\n")
 
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
