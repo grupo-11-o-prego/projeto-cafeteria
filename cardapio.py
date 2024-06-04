@@ -10,8 +10,10 @@ with open(arquivo, 'r') as arquivo_aberto:
 cardapio = json.loads(cardapio_conteudo) 
 
 def exibirCategorias():
+  print("-- Categorias ------------------------------------")
   for k in cardapio.keys():
-    print(f"{k}")
+    print(f" - {k}")
+  print("--------------------------------------------------")
 
 def exibirSubCategorias(categoria: str):
   for k in cardapio[categoria].keys():
@@ -44,6 +46,17 @@ def verificarProduto(produto: str, subcategoria: str, categoria: str):
     return False
 
   return produto.lower() in cardapio[categoria_lowercase][subcategoria_lowercase].keys()
+
+def escolherCategoria():
+  while True:
+    exibirCategorias()
+    categoria = str(input("Escolha uma categoria: ")).lower()
+    if(categoria in cardapio.keys()):
+      return categoria
+    else:
+      print(f'> a categoria "{categoria}" não existe!')
+  
+  
 
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
