@@ -9,11 +9,11 @@ with open(arquivo, 'r') as arquivo_aberto:
 # transforma o conteudo do arquivo em um dicionário
 cardapio = json.loads(cardapio_conteudo) 
 
-def montarTitulo(texto: str):
+def montarTitulo(texto: str = None):
   print("")
 
 def exibirCategorias():
-  print("-- Categorias ------------------------------------")
+  print("-- Categorias ------------------------------------\n")
   for k in cardapio.keys():
     print(f" - {k}")
   print("--------------------------------------------------")
@@ -25,8 +25,10 @@ def exibirSubCategorias(categoria: str):
   print("--------------------------------------------------")
 
 def exibirProdutos(categoria: str, subcategoria: str):
-  for k in cardapio[categoria][subcategoria].keys():
-    print(f"{k}")
+  print("-- Produtos ------------------------------------\n")
+  for k, produto in cardapio[categoria][subcategoria].items():
+    print(f" - {k} - R${produto["valor"]:6.2f} - {produto["estoque"]} unidades")
+  print("--------------------------------------------------")
 
 def verificarCategoria(categoria: str):
   return categoria.lower() in cardapio.keys()
@@ -57,22 +59,22 @@ def escolherCategoria():
     exibirCategorias()
     categoria = str(input("Escolha uma categoria: ")).lower()
     if(verificarCategoria(categoria)):
-      print("\n")
+      print("")
       return categoria
     else:
       print(f'> a categoria "{categoria}" não existe!')
-    print("\n")
+    print("")
   
 def escolherSubCategoria(categoria: str):
   while True:
     exibirSubCategorias(categoria)
     subcategoria = str(input("Escolha uma subcategoria: ")).lower()
     if(verificarSubCategoria(subcategoria, categoria)):
-      print("\n")
+      print("")
       return subcategoria
     else:
       print(f'> a subcategoria "{subcategoria}" não existe!')
-    print("\n")
+    print("")
 
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
