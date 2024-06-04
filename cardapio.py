@@ -76,6 +76,17 @@ def escolherSubCategoria(categoria: str):
       print(f'> a subcategoria "{subcategoria}" não existe!')
     print("")
 
+def escolherProduto(categoria: str, subcategoria: str):
+  while True:
+    exibirProdutos(categoria, subcategoria)
+    produto = str(input("Escolha um produto: ")).lower()
+    if(verificarProduto(produto, subcategoria, categoria)):
+      print("")
+      return produto
+    else:
+      print(f'> o produto "{produto}" não existe!')
+    print("")
+
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
     arquivo_aberto.write(str(cardapio))
