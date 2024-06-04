@@ -27,7 +27,7 @@ def exibirSubCategorias(categoria: str):
 def exibirProdutos(categoria: str, subcategoria: str):
   print("-- Produtos ------------------------------------\n")
   for k, produto in cardapio[categoria][subcategoria].items():
-    print(f" - {k} - R${produto["valor"]:6.2f} - {produto["estoque"]} unidades")
+    print(f" - {k} - R${produto['valor']:6.2f} - {produto['estoque']} unidades")
   print("--------------------------------------------------")
 
 def verificarCategoria(categoria: str):
