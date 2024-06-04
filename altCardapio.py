@@ -1,3 +1,3 @@
 import cardapio as cp
 
-cp.exibirSubCategorias("bebidas")
+cp.exibirProdutos("bebidas", "refrigerantes")
