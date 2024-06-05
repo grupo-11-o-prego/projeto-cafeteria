@@ -89,4 +89,5 @@ def escolherProduto(categoria: str, subcategoria: str):
 
 def salvar(): 
   with open(arquivo, 'w') as arquivo_aberto:
-    arquivo_aberto.write(str(cardapio))
+    cardapio_json = json.dumps(cardapio)
+    arquivo_aberto.write(str(cardapio_json))
