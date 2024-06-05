@@ -8,7 +8,8 @@
   },
   "sobremesas": {
     "geladas": {
-      "pudim": { "valor": 20, "estoque": 2 }
+      "pudim": { "valor": 20, "estoque": 2 },
+      "coca-cola": { "valor": 6, "estoque": 2 }
     }
   }
 }
