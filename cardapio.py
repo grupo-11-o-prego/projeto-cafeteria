@@ -9,6 +9,8 @@ with open(arquivo, 'r') as arquivo_aberto:
 # transforma o conteudo do arquivo em um dicionário
 cardapio = json.loads(cardapio_conteudo) 
 
+carrinho = {"itens":[], "valor": 0}
+
 def montarTitulo(texto: str = None):
   print("")
 
