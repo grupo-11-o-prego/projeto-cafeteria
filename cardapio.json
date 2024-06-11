@@ -71,6 +71,20 @@
                 "valor": 8,
                 "estoque": 9
             }
+        },
+        "doces": {
+            "brigadeiro": {
+                "valor": 2,
+                "estoque": 40
+            },
+            "beijinho": {
+                "valor": 2,
+                "estoque": 35
+            },
+            "trufa": {
+                "valor": 3,
+                "estoque": 25
+            }
         }
     },
     "snacks": {
@@ -86,20 +100,6 @@
             "empada": {
                 "valor": 6,
                 "estoque": 15
-            }
-        },
-        "doces": {
-            "brigadeiro": {
-                "valor": 2,
-                "estoque": 40
-            },
-            "beijinho": {
-                "valor": 2,
-                "estoque": 35
-            },
-            "trufa": {
-                "valor": 3,
-                "estoque": 25
             }
         }
     }
