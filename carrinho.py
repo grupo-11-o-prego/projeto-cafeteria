@@ -36,13 +36,15 @@ def addCarrinho():
                 print(f"---> O número excede a quantidade do item '{itemSelecionado}' no estoque (Quantidade: {cp.cardapio[categoria][subcategoria][itemSelecionado]['estoque']})")
             else:
                 valido = True
+            cp.cardapio[categoria][subcategoria][itemSelecionado]['estoque'] -= quantidadeItem
             precoItem = cp.cardapio[categoria][subcategoria][itemSelecionado]['valor']
-            cp.carrinho['itens'].append({'nome': itemSelecionado, 'valor': precoItem ,'quantidade': quantidadeItem})
+            cp.carrinho['itens'].append({'categoria': categoria,'subcategoria': subcategoria,'nome': itemSelecionado, 'valor': precoItem ,'quantidade': quantidadeItem})
             cp.carrinho['valor'] += precoItem * quantidadeItem
 
         continuar = str(input("Quer adicionar mais um item ao carrinho? [s/n]")).lower()
         if continuar == 'n':
             novamente = False
+            cp.salvar()
     
 def removeCarrinho():
     print("=============== REMOVER ITEM ===============")
@@ -60,9 +62,24 @@ def removeCarrinho():
             print("---> Número inválido! Tente novamente.")
         else:
             valido = True
-    itemSelecionado = inputItem[numeroInput - 1]
-    cp.carrinho['itens'].pop(itemSelecionado)
-
+    indicieItem = numeroInput - 1
+    itemSelecionado = cp.carrinho['itens'][indicieItem]
+    
+    # Capturar a quantidade do item a ser removido
+    quantidadeRemovida = itemSelecionado['quantidade']
+    
+    categoria = itemSelecionado['categoria']
+    subcategoria = itemSelecionado['subcategoria']
+    nomeItem = itemSelecionado['nome']
+    cp.cardapio[categoria][subcategoria][nomeItem]['estoque'] += quantidadeRemovida
+    cp.salvar()
+    cp.carrinho['itens'].pop(indicieItem)
+    
+print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
 addCarrinho()
+print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
 removeCarrinho()
+print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
 mostrarCarrinho()
+print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
+
