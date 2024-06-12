@@ -5,8 +5,8 @@ def listar():
          for produto_k, produto_v in produtos_v.items():
             print("--------------------------------------------------")
             print(f"produto: {produto_k}")
-            print(f"valor: R$ {produto_v["valor"]:6.2f}")
-            print(f"estoque: {produto_v["estoque"]} unidades")
+            print(f"valor: R$ {produto_v['valor']:6.2f}")
+            print(f"estoque: {produto_v['estoque']} unidades")
             print(f"categoria: {cardapio_k}")
             print(f"subcategoria: {produtos_k}")
          

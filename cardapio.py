@@ -93,3 +93,88 @@ def salvar():
   with open(arquivo, 'w') as arquivo_aberto:
     cardapio_json = json.dumps(cardapio)
     arquivo_aberto.write(str(cardapio_json))
+
+def cadCardapio():
+    validCat = False
+    validSub = False
+    print("========== CADASTRO DE PRODUTO NO CARDÁPIO ==========")
+    categoria = escolherCategoria()
+    subcategoria = escolherSubCategoria(categoria)
+    nome = str(input("Informe o nome do produto a ser cadastrado: ")).lower()
+    valor = float(input(f"Informe o valor do produto '{nome}': "))
+    estoque = int(input(f"Informe a quantidade em estoque do produto '{nome}': "))
+    cardapio[categoria][subcategoria][nome] = {'valor': valor, 'estoque': estoque}
+    print(f"Adicionado: \n ===> {nome} <=== \n{cardapio[categoria][subcategoria][nome]}")
+    salvar()
+  
+def altCardapio():
+  categoria = escolherCategoria()
+  subcategoria = escolherSubCategoria(categoria)
+  produto = escolherProduto(categoria, subcategoria)
+
+  while True:
+    print("-- Opções ----------------------------------------")
+    print(" [1] - Editar valor")
+    print(" [2] - Editar estoque")
+    print(" [3] - Sair")
+    print("--------------------------------------------------")
+
+    opcao = str(input("Escolha uma opção: "))
+    if(opcao == "1"):
+      valor = float(input(f"Entre com o novo valor de '{produto}': R$ "))
+      cardapio[categoria][subcategoria][produto]["valor"] = valor
+      print("Produto atualizado com sucesso!")
+      salvar()
+    elif(opcao == "2"):
+      estoque = int(input(f"Entre com o novo estoque do '{produto}': "))
+      cardapio[categoria][subcategoria][produto]["estoque"] = estoque
+      print("Produto atualizado com sucesso!")
+      salvar()
+    elif(opcao == "3"):
+      break
+    else:
+      print(f"> opção '{opcao}' não existe!")
+    break
+
+def remover_item(cardapio):
+
+    print("\nSelecione para excluir o item desejado\n")
+    categoria = escolherCategoria()
+    subcategoria = escolherSubCategoria(categoria)
+    produto = escolherProduto(categoria,subcategoria)
+    
+    cardapio[categoria][subcategoria].pop(produto)
+
+    print(f"Produto {produto} excluído com sucesso!\n")
+
+    salvar()
+
+def buscar(cardapio):
+    
+   produto_desejado = input("Qual o produto desejado ? ")
+   produto_achado = False
+   for cardapio_k, cardapio_v in cardapio.items():
+      for produtos_k, produtos_v in cardapio_v.items():
+         for produto_k, produto_v in produtos_v.items():
+            if produto_desejado in produto_k:
+               print("--------------------------------------------------")
+               print(f"produto: {produto_k}")
+               print(f"valor: R$ {produto_v['valor']:6.2f}")
+               print(f"estoque: {produto_v['estoque']} unidades")
+               print(f"categoria: {cardapio_k}")
+               print(f"subcategoria: {produtos_k}")
+               produto_achado = True
+
+   if(produto_achado == False):
+      print(f"> o produto '{produto_desejado}' não existe!")
+         
+def listar():    
+   for cardapio_k, cardapio_v in cardapio.items():
+      for produtos_k, produtos_v in cardapio_v.items():
+         for produto_k, produto_v in produtos_v.items():
+            print("--------------------------------------------------")
+            print(f"produto: {produto_k}")
+            print(f"valor: R$ {produto_v['valor']:6.2f}")
+            print(f"estoque: {produto_v['estoque']} unidades")
+            print(f"categoria: {cardapio_k}")
+            print(f"subcategoria: {produtos_k}")

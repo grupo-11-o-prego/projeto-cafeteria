@@ -1,12 +1,17 @@
 import cardapio as cp
 
 def mostrarCarrinho():
+    print("\n\n")
+    taxaGarcom = cp.carrinho['valor'] * 0.10
     print("============ Carrinho ============")
     for x in cp.carrinho['itens']:
         print(f'---> {x["nome"]} - R${x["valor"]} - Qtd: {x["quantidade"]}')
-    print(f"---------------> Valor TOTAL: R${cp.carrinho['valor']}")
+    print(f'---> TAXA DO GARÇOM (10%) - R${taxaGarcom:6.2f}')
+    print(f"---------------> Valor TOTAL: R${cp.carrinho['valor']} + R${taxaGarcom:6.2f}")
 
 def addCarrinho():
+    print("\n\n")
+    print("=============== Adicionar prduto ao carrinho ===============")
     novamente = True
     while novamente == True:
         categoria = cp.escolherCategoria()
@@ -47,6 +52,7 @@ def addCarrinho():
             cp.salvar()
     
 def removeCarrinho():
+    print("\n\n")
     print("=============== REMOVER ITEM ===============")
     cont = 1
     inputItem = []
@@ -73,13 +79,22 @@ def removeCarrinho():
     nomeItem = itemSelecionado['nome']
     cp.cardapio[categoria][subcategoria][nomeItem]['estoque'] += quantidadeRemovida
     cp.salvar()
+    cp.carrinho['valor'] -= itemSelecionado['valor'] * itemSelecionado['quantidade']
     cp.carrinho['itens'].pop(indicieItem)
-    
-print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
-addCarrinho()
-print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
-removeCarrinho()
-print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
-mostrarCarrinho()
-print(cp.cardapio['sobremesas']['doces']['brigadeiro']['estoque'])
 
+def finalizarCompra():
+    print("\n\n")
+    mostrarCarrinho()
+    while True:
+        final = str(input("\n--> Deseja FINALIZAR a compra? [s/n]")).lower()
+        if final == "s":
+            cp.carrinho['itens'] = []
+            cp.carrinho['valor'] = 0
+            print("===> COMPRA FINALIZADA! <===")
+            break;
+        elif final == "n":
+            print("Compra não finalizada")
+            break;
+        else:
+            print("Resposta inválida! Tente novamente.")
+            
